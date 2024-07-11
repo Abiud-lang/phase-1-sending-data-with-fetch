@@ -6,7 +6,7 @@ const spies = require( 'chai-spies' );
 const nock = require( 'nock' );
 chai.use( spies );
 
-const rando = Math.ceil( Math.random() * 1000 )
+const random= Math.ceil( Math.random() * 1000 )
 
 describe( "submitData()", () => {
   let xhr, requests
@@ -29,7 +29,7 @@ describe( "submitData()", () => {
         reqBody = requestBody
         headers = this.req.headers
         return {
-          id: rando,
+          id: random,
           ...requestBody
         }
       } );
@@ -59,7 +59,7 @@ describe( "submitData()", () => {
       .post( '/users' )
       .reply( 201, function ( uri, requestBody ) {
         return {
-          id: rando,
+          id: random,
           ...requestBody
         }
       } );
@@ -70,7 +70,7 @@ describe( "submitData()", () => {
     await submitData( name, email )
 
     expect( document.body.innerHTML )
-      .to.include( rando )
+      .to.include( random )
   } );
 
   it( "handles a failed POST request using catch, appends the error message to the DOM", async function () {
